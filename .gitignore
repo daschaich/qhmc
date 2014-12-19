@@ -1,5 +1,8 @@
 *~
+*.sw[op]
 Makefile.in
 *.h.in
 configure
 autom4te.cache
+test/*tmp
+test/*out

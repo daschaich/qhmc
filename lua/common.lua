@@ -1,7 +1,3 @@
-function printf(...)
-  io.write(string.format(...))
-end
-
 do
   local function simple(t)
     for k,v in pairs(t) do

@@ -151,8 +151,10 @@ end
 
 function plaq(g)
   local ss,st = g:action({plaq=1})
-  local s = g:lattice():volume()*g:nc()
-  return ss/s, st/s
+  local nd = #qopqdp.lattice()
+  local norm_t = (nd - 1) * g:lattice():volume()
+  local norm_s = 0.5 * (nd - 2) * norm_t
+  return ss / norm_s, st / norm_t
 end
 
 function wflow(u, coeffs, eps, nsteps)

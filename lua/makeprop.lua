@@ -33,12 +33,13 @@ qopqdp.seed(seed)
 --wr = qopqdp.writer("test.out", "<metadata/>")
 
 function getplaq(g)
-  local ps,pt = g:action{plaq=1}
-  local lat = qopqdp.lattice()
-  local nd,vol = #lat,1
-  for i=1,nd do vol=vol*lat[i] end
-  local s = 0.25*nd*(nd-1)*vol
-  printf("plaq ss: %-8g  st: %-8g  tot: %-8g\n", ps/s, pt/s, 0.5*(ps+pt)/s)
+  local ps,pt = g:action({plaq=1})
+  local nd = #qopqdp.lattice()
+  local norm_t = (nd - 1) * g:lattice():volume()
+  local norm_s = 0.5 * (nd - 2) * norm_t
+  ps = ps / norm_s
+  pt = pt / norm_t
+  printf("plaq ss: %-8g  st: %-8g  tot: %-8g\n", ps, pt, 0.5*(ps+pt))
 end
 
 g0 = qopqdp.gauge()
