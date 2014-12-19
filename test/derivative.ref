@@ -1,0 +1,58 @@
+#loading: /home/schaich/current/lqcd/install/qhmc-git/lua/Init.lua
+#loading: /home/schaich/current/lqcd/install/qhmc-git/lua/pl/class.lua
+#runtest: using temp file derivative.tmp
+##loading: /home/schaich/current/lqcd/install/qhmc-git/lua/Init.lua
+##loading: /home/schaich/current/lqcd/install/qhmc-git/lua/pl/class.lua
+##runtest: using temp file derivative.tmp
+##loading: /home/schaich/current/lqcd/install/qhmc-git/lua/smear.lua
+#ndim = 4
+#numsites = 256
+#len = 4 4 4 4
+#nsquares = 1 1 1 1
+orig unitarity deviation avg: 1.96e-08  max: 4.081e-08
+new  unitarity deviation avg: 1.241e-16  max: 3.25e-16
+Orig_plaq ss: 0.5845729  st: 0.57193524  tot: 0.57825407
+smear = {
+  1 = {
+    coeffs = {
+      1 = {
+        -4 = 0.083333333333333
+        -3 = 0.083333333333333
+        -2 = 0.083333333333333
+        0 = 0.5
+        2 = 0.083333333333333
+        3 = 0.083333333333333
+        4 = 0.083333333333333
+      }
+      2 = {
+        -4 = 0.083333333333333
+        -3 = 0.083333333333333
+        -1 = 0.083333333333333
+        0 = 0.5
+        1 = 0.083333333333333
+        3 = 0.083333333333333
+        4 = 0.083333333333333
+      }
+      3 = {
+        -4 = 0.083333333333333
+        -2 = 0.083333333333333
+        -1 = 0.083333333333333
+        0 = 0.5
+        1 = 0.083333333333333
+        2 = 0.083333333333333
+        4 = 0.083333333333333
+      }
+      4 = {
+        -3 = 0.083333333333333
+        -2 = 0.083333333333333
+        -1 = 0.083333333333333
+        0 = 0.5
+        1 = 0.083333333333333
+        2 = 0.083333333333333
+        3 = 0.083333333333333
+      }
+    }
+    type = staples
+  }
+}
+APE_plaq  ss: 0.5845729  st: 0.57193524  tot: 0.57825407

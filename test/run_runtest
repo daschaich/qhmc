@@ -1,0 +1,7 @@
+#!/bin/sh
+
+for i in fieldIO momentum norm2 point subset wilsonHMC milc-su3_rhmc_hisq wilson2fHMC hyp8fHMC random gauge stagObs derivative ; do
+  if ! ./runtest ../../../install/qhmc-git/bin/qhmc $i.lua ; then
+    exit 1
+  fi
+done
