@@ -1,6 +1,7 @@
 -- This example is part of the regression test suite.  Functions starting
 -- with TEST are part of the test framework and can be ignored.
 
+require 'gaugeObservables'
 require 'topo'
 
 nx = 4
@@ -13,21 +14,12 @@ TESTON()
 seed = 987654321
 qopqdp.seed(seed)
 
-function getplaq(g)
-  local ps,pt = g:action{plaq=1}
-  local lat = qopqdp.lattice()
-  local nd,vol = #lat,1
-  for i=1,nd do vol=vol*lat[i] end
-  local s = 0.25*nd*(nd-1)*vol
-  printf("plaq ss: %-8g  st: %-8g  tot: %-8g\n", ps/s, pt/s, 0.5*(ps+pt)/s)
-end
-
 g = qopqdp.gauge()
 g:unit()
-getplaq(g)
+printf("plaq ss: %-8g  st: %-8g  tot: %-8g\n", plaq(g))
 
 g:random()
-getplaq(g)
+printf("plaq ss: %-8g  st: %-8g  tot: %-8g\n", plaq(g))
 
 local nrep = 10
 local nhb = 1
@@ -35,7 +27,7 @@ local nor = 1
 local beta = 10
 local coeffs = {plaq=1}
 g:heatbath(nrep, nhb, nor, beta, coeffs)
-getplaq(g)
+printf("plaq ss: %-8g  st: %-8g  tot: %-8g\n", plaq(g))
 
 t0 = clock()
 se,sq = symmEQ(g)
