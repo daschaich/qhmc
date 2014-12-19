@@ -154,8 +154,7 @@ r.pbp = pbp
 
 if inlat then
   acts:load(inlat)
-  local ps,pt = acts.fields.G:plaq()
-  printf("plaq ss: %g  st: %g  tot: %g\n", ps, pt, 0.5*(ps+pt))
+  printf("plaq ss: %g  st: %g  tot: %g\n", acts.fields.G:plaq())
 else
   acts:unit()
 end

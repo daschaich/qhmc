@@ -81,8 +81,7 @@ function fieldsmt.updateField(f, i, eps)
     eps = teps
   end
   f.G:update(f.F, eps)
-  --local ss,st = f.G:plaq()
-  --printf("plaq %g %g\n", 3*ss, 3*st);
+  --printf("plaq %g %g %g\n", f.G:plaq())
 end
 
 function fieldsmt.updateMomentum(f, i, tj, teps)

@@ -19,14 +19,6 @@ for k,v in ipairs(latsize) do printf(" %i",v); end
 printf("\n")
 printf("seed = %i\n", seed)
 
-function plaq(g)
-  local ss,st = g:action({plaq=1})
-  local nd = #qopqdp.lattice()
-  local norm_t = (nd - 1) * g:lattice():volume()
-  local norm_s = 0.5 * (nd - 2) * norm_t
-  return ss / norm_s, st / norm_t
-end
-
 U = qopqdp.gauge()
 if inlat then
   U:load(inlat)
@@ -51,8 +43,7 @@ function rtloop(U, r, t)
 end
 
 function stats(U)
-  local ps,pt = plaq(U)
-  printf(" plaq ss: %g  st: %g  tot: %g\n", ps, pt, 0.5*(ps+pt))
+  printf(" plaq ss: %g  st: %g  tot: %g\n", plaq(U))
 
   for i=1,nd do
     for j=i+1,nd do

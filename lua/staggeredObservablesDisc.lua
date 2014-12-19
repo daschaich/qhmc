@@ -1,9 +1,10 @@
 -- ESW 10-10-2014
 -- This standalone file measures the connected and
--- disconnected scalar using time, color, and space even-odd 
--- dilution. 
+-- disconnected scalar using time, color, and space even-odd
+-- dilution.
 
 require 'common'
+require 'gaugeObservables'
 require 'smear'
 require 'run'
 
@@ -83,16 +84,7 @@ do
 end
 
 -- Print some basic information about the configuration.
-function getplaq(g)
-  local ps,pt = g:action{plaq=1}
-  local nd = #qopqdp.lattice()
-  local norm_t = (nd - 1) * g:lattice():volume()
-  local norm_s = 0.5 * (nd - 2) * norm_t
-  ps = ps / norm_s
-  pt = pt / norm_t
-  printf("plaq ss: %-8g  st: %-8g  tot: %-8g\n", ps, pt, 0.5*(ps+pt))
-end
-getplaq(g);
+printf("plaq ss: %-8g  st: %-8g  tot: %-8g\n", plaq(g))
 
 -- No need to gauge fix!
 

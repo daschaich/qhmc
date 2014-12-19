@@ -11,7 +11,7 @@
 #nsquares = 1 1 1 1
 orig unitarity deviation avg: 1.96e-08  max: 4.081e-08
 new  unitarity deviation avg: 1.241e-16  max: 3.25e-16
-Orig_plaq ss: 0.5845729  st: 0.57193524  tot: 0.57825407
+Orig_plaq  ss: 0.5845729  st: 0.57193524  tot: 0.57825407
 smear = {
   1 = {
     coeffs = {
@@ -55,4 +55,18 @@ smear = {
     type = staples
   }
 }
-APE_plaq  ss: 0.5845729  st: 0.57193524  tot: 0.57825407
+APE_plaq   ss: 0.37751593  st: 0.36989673  tot: 0.37370633
+smear = {
+  1 = {
+    rho = 0.1
+    type = stout
+  }
+}
+stout_plaq ss: 0.82960194  st: 0.81602302  tot: 0.82281248
+smear = {
+  1 = {
+    alpha = { 0.4, 0.5, 0.5 }
+    type = hyp
+  }
+}
+HYP_plaq   ss: 0.8982  st: 0.88605498  tot: 0.89212749

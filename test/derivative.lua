@@ -7,6 +7,7 @@
 --   Re Tr[ f(X) C ]
 -- then we add some small value to one element of X, calculate
 -- the finite difference and compare to the smearChain result
+require 'gaugeObservables'
 require 'smear'
 --------------------------------------------------------------------
 
@@ -45,19 +46,6 @@ function ape_space(alpha)
   end
   return c
 end
-
--- Return space--space and space--time plaquettes
--- Normalizations: (ndims - 1) * volume for space--time
---                 0.5 * (ndims - 2) * (ndims - 1) * volume for space--space
-function getplaq(g)
-  local ndims = #qopqdp.lattice()
-  local norm_t = (ndims - 1) * g:lattice():volume()
-  local norm_s = 0.5 * (ndims - 2) * norm_t
-  local ss, st = g:action({plaq=1})
-  ss = ss / norm_s
-  st = st / norm_t
-  return ss, st, 0.5 * (ss + st)
-end
 --------------------------------------------------------------------
 
 
@@ -83,17 +71,14 @@ local coeffs = {plaq=1}
 g = qopqdp.gauge()
 g:random()
 g:heatbath(nrep, nhb, nor, beta, coeffs)
-local devavg, devmax = g:checkSU()
-printf("orig unitarity deviation avg: %.4g  max: %.4g\n", devavg, devmax)
+printf("orig unitarity deviation avg: %.4g  max: %.4g\n", g:checkSU())
 g:makeSU()
-devavg, devmax = g:checkSU()
-printf("new  unitarity deviation avg: %.4g  max: %.4g\n", devavg, devmax)
+printf("new  unitarity deviation avg: %.4g  max: %.4g\n", g:checkSU())
 
 -- Do various smearings and check chain rule
 -- Also monitor plaquette as simple sanity check on smearing
 -- First print unsmeared plaquette
-local ss, st, tot = getplaq(g)
-printf("Orig_plaq ss: %.8g  st: %.8g  tot: %.8g\n", ss, st, tot)
+printf("Orig_plaq  ss: %.8g  st: %.8g  tot: %.8g\n", plaq(g))
 
 -- First smearing: 4d APE
 smear = {}
@@ -104,25 +89,36 @@ myprint("smear = ", smear, "\n")
 local sg = smearGauge({g = g}, smear)
 
 -- Check plaquette
---ss, st, tot = getplaq(sg)
-printf("APE_plaq  ss: %.8g  st: %.8g  tot: %.8g\n", ss, st, tot)
+printf("APE_plaq   ss: %.8g  st: %.8g  tot: %.8g\n", plaq(sg))
 
 -- Check derivative
 -- TODO...
 
--- Second smearing: BSM-style HYP
-alpha = {0.4, 0.5, 0.5}
-smear[1] = { type="hyp", alpha = alpha }
+-- Second smearing: stout
+alpha = 0.1
+smear[1] = { type="stout", rho = alpha }
+myprint("smear = ", smear, "\n")
 sg = smearGauge({g = g}, smear)
 
 -- Check plaquette
-ss, st, tot = getplaq(sg)
-printf("HYP_plaq  ss: %.8g  st: %.8g  tot: %.8g\n", ss, st, tot)
+printf("stout_plaq ss: %.8g  st: %.8g  tot: %.8g\n", plaq(sg))
 
 -- Check derivative
 -- TODO...
 
--- Third smearing: adjoint rep
+-- Third smearing: BSM-style HYP
+alpha = {0.4, 0.5, 0.5}
+smear[1] = { type="hyp", alpha = alpha }
+myprint("smear = ", smear, "\n")
+sg = smearGauge({g = g}, smear)
+
+-- Check plaquette
+printf("HYP_plaq   ss: %.8g  st: %.8g  tot: %.8g\n", plaq(sg))
+
+-- Check derivative
+-- TODO...
+
+-- Fourth smearing: adjoint rep
 -- TODO...
 
 TESTOFF()   -- Resume commenting tmp-->out

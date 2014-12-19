@@ -1,4 +1,5 @@
 require 'common'
+require 'gaugeObservables'
 require 'run'
 
 local nx = nx or 8
@@ -290,8 +291,7 @@ else
 end
 if qopverb then qopqdp.verbosity(qopverb) end
 
-local ps,pt = acts.fields.G:plaq()
-printf("plaq ss: %g  st: %g  tot: %g\n", ps, pt, 0.5*(ps+pt))
+printf("plaq ss: %g  st: %g  tot: %g\n", acts.fields.G:plaq())
 
 local nlats = nlats or 1
 

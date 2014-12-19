@@ -218,7 +218,9 @@ function gaugemt.plaq(g)
   local nd = #qopqdp.lattice()
   local norm_t = (nd - 1) * g.a.vol
   local norm_s = 0.5 * (nd - 2) * norm_t
-  return ss / norm_s, st / norm_t
+  ss = ss / norm_s
+  st = st / norm_t
+  return ss, st, 0.5 * (ss + st)
 end
 
 function gaugemt.ploop(g)

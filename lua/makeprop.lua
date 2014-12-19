@@ -1,4 +1,5 @@
 require 'common'
+require 'gaugeObservables'
 require 'gaugeact'
 require 'wilsonObservables'
 
@@ -32,16 +33,6 @@ qopqdp.seed(seed)
 
 --wr = qopqdp.writer("test.out", "<metadata/>")
 
-function getplaq(g)
-  local ps,pt = g:action({plaq=1})
-  local nd = #qopqdp.lattice()
-  local norm_t = (nd - 1) * g:lattice():volume()
-  local norm_s = 0.5 * (nd - 2) * norm_t
-  ps = ps / norm_s
-  pt = pt / norm_t
-  printf("plaq ss: %-8g  st: %-8g  tot: %-8g\n", ps, pt, 0.5*(ps+pt))
-end
-
 g0 = qopqdp.gauge()
 if fn then g0:load(fn)
 else
@@ -49,11 +40,11 @@ else
   g0:random()
 end
 
-getplaq(g0)
+printf("plaq ss: %-8g  st: %-8g  tot: %-8g\n", plaq(g))
 -- coulomb(j_decay, error, max iterations, overrelaxation param)
 -- note that here 0->x, ..., 3->t
 --g0:coulomb(3, 1e-7, 1000, 1.2)
---getplaq(g0)
+--printf("plaq ss: %-8g  st: %-8g  tot: %-8g\n", plaq(g))
 
 -- background EM field
 function setE(g, q)

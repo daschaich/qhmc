@@ -3,6 +3,7 @@
 -- then measure various spectral quantities.
 
 require 'common'
+require 'gaugeObservables'
 require 'smear'
 require 'run'
 
@@ -66,24 +67,13 @@ end
 
 -- Reunitarize, just to be safe.
 do
-  local devavg,devmax = g:checkSU()
-  printf("unitarity deviation avg: %g  max: %g\n", devavg, devmax)
+  printf("unitarity deviation avg: %g  max: %g\n", g:checkSU())
   g:makeSU()
-  devavg,devmax = g:checkSU()
-  printf("new unitarity deviation avg: %g  max: %g\n", devavg, devmax)
+  printf("new unitarity deviation avg: %g  max: %g\n", g:checkSU())
 end
 
 -- Print some basic information about the configuration
-function getplaq(g)
-  local ps,pt = g:action({plaq=1})
-  local nd = #qopqdp.lattice()
-  local norm_t = (nd - 1) * g:lattice():volume()
-  local norm_s = 0.5 * (nd - 2) * norm_t
-  ps = ps / norm_s
-  pt = pt / norm_t
-  printf("plaq ss: %-8g  st: %-8g  tot: %-8g\n", ps, pt, 0.5*(ps+pt))
-end
-getplaq(g);
+printf("plaq ss: %-8g  st: %-8g  tot: %-8g\n", plaq(g))
 
 -- First, we need to gauge fix!
 local t0 = qopqdp.dtime();

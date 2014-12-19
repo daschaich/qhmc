@@ -107,8 +107,7 @@ function fields.updateField(f, i, eps)
   --gt = gt + eps
   --printf("Gupdate %g %g %g\n", eps, gt, 0.5*f.F:norm2()-16*vol)
   f.G:update(f.F, eps)
-  --local ss,st = f.G:plaq()
-  --printf("plaq %g %g\n", 3*ss, 3*st);
+  --printf("plaq %g %g %g\n", f.G:plaq())
 end
 function fields.updateMomentum(f, i, tj, teps)
   for k,j in ipairs(tj) do
@@ -170,8 +169,7 @@ copyto(rhmc, rhmc1)
 
 function measure(G)
   local t0 = clock()
-  local ps,pt = G:plaq()
-  printf("plaq ss: %-8g  st: %-8g  tot: %-8g\n", ps, pt, 0.5*(ps+pt))
+  printf("plaq ss: %-8g  st: %-8g  tot: %-8g\n", G:plaq())
 
   local nd = #G.a.latsize
   for i=1,nd do

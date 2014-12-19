@@ -34,7 +34,7 @@ tmax = 1
 nsteps = tmax/eps
 
 function stats(u, i)
-  local ss,st = plaq(u)
+  local ss, st, tot = plaq(u)
   local t = eps*i
   local e = 6*(2-ss-st)
   printf("%g\t%g\n", t, e*t*t)

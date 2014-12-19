@@ -149,14 +149,6 @@ function pathDo(g, nd, paths, coeffs)
 end
 --]]
 
-function plaq(g)
-  local ss,st = g:action({plaq=1})
-  local nd = #qopqdp.lattice()
-  local norm_t = (nd - 1) * g:lattice():volume()
-  local norm_s = 0.5 * (nd - 2) * norm_t
-  return ss / norm_s, st / norm_t
-end
-
 function wflow(u, coeffs, eps, nsteps)
   -- u1 = exp((eps/4)f0) u0
   -- u2 = exp((eps*8/9)f1-(eps*17/36)f0) u1
@@ -185,13 +177,6 @@ function wflow(u, coeffs, eps, nsteps)
     f:update(ft, 27/17)
     u:update(f, eps*17/36)
   end
-end
-
-function plaqE(g)
-  local ss,st = plaq(g)
-  local nd = #(g:lattice())
-  local e = 0.5*nd*(nd-1)*(2-ss-st)
-  return e
 end
 
 -- get F_{mu,nu}

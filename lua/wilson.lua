@@ -192,8 +192,7 @@ else
   acts:unit()
 end
 
-local ps,pt = acts.fields.G:plaq()
-printf("plaq ss: %g  st: %g  tot: %g\n", ps, pt, 0.5*(ps+pt))
+printf("plaq ss: %g  st: %g  tot: %g\n", acts.fields.G:plaq())
 
 for nl=1,nlats do
   if warmup and traj<warmup then

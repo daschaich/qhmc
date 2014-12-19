@@ -124,8 +124,7 @@ for i,v in ipairs(mi.runs) do
   for k,f in pairs(v) do
     if(string.match(k,"^reload")) then
       acts:load(f[1])
-      local ps,pt = acts.fields.G:plaq()
-      printf("plaq ss: %g  st: %g  tot: %g\n", ps, pt, 0.5*(ps+pt))
+      printf("plaq ss: %g  st: %g  tot: %g\n", acts.fields.G:plaq())
     end
   end
   acts:run(r)

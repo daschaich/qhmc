@@ -1,4 +1,5 @@
 require 'common'
+require 'gaugeObservables'
 require 'gaugeact'
 
 --trace(true)
@@ -20,16 +21,6 @@ qopqdp.verbosity(0)
 seed = seed or os.time()
 qopqdp.seed(seed)
 
-function getplaq(g)
-  local ps,pt = g:action({plaq=1})
-  local nd = #qopqdp.lattice()
-  local norm_t = (nd - 1) * g:lattice():volume()
-  local norm_s = 0.5 * (nd - 2) * norm_t
-  ps = ps / norm_s
-  pt = pt / norm_t
-  printf("plaq ss: %-8g  st: %-8g  tot: %-8g\n", ps, pt, 0.5*(ps+pt))
-end
-
 g = qopqdp.gauge()
 if fn then g:load(fn)
 else
@@ -37,11 +28,11 @@ else
   g:random()
 end
 
-getplaq(g)
+printf("plaq ss: %-8g  st: %-8g  tot: %-8g\n", plaq(g))
 -- coulomb(j_decay, error, max iterations, overrelaxation param)
 -- note that here 0->x, ..., 3->t
 --g:coulomb(3, 1e-7, 1000, 1.2)
---getplaq(g)
+--printf("plaq ss: %-8g  st: %-8g  tot: %-8g\n", plaq(g))
 
 h = qopqdp.hisq()
 --h:printcoeffs()

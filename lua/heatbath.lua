@@ -23,14 +23,6 @@ GA = Action{kind="gauge",style="plaquette",beta=beta,field=G}
 E = Evolver{kind="heatbath",actions={GA},
 	    nRepetitions=10,nHeatbath=1,nOverrelax=1}
 
-function plaq()
-  local a = GA:Action()
-  local b = a/beta
-  local p = GA.act0 - b
-  local s = 1/GA.act0
-  return p*s
-end
-
 function ploop()
   local nd = #L
   local pl = {}
@@ -47,12 +39,14 @@ function topo()
   return tr
 end
 
-printf("initial plaq: %g\n", plaq())
+local ps, pt, ptot = plaq()
+printf("initial plaq: %g\n", ptot)
 printf("initial ploop: %s\n", tostring(ploop()))
 
 for i=1,10 do
   E:Run()
-  printf("plaq: %g\n", plaq())
+  ps, pt, ptot = plaq()
+  printf("plaq: %g\n", ptot)
   printf("ploop: %s\n", tostring(ploop()))
   --printf("topo: %s\n", tostring(topo()))
 end

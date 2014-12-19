@@ -95,10 +95,10 @@ hmcparams.nsteps = nsteps
 --qcd.defaults{qdpProfcontrol=1}
 
 function measure(U,traj)
-  ps,pt = plaq(U)
-  printf("plaq ss: %g  st: %g  tot: %g\n", ps, pt, 0.5*(ps+pt))
+  local ps, pt, ptot = plaq(U)
+  printf("plaq ss: %g  st: %g  tot: %g\n", ps, pt, ptot)
   io.open("plaq.dat","a")
-  io.write("%i %g %g %g\n", ps, pt, 0.5*(ps+pt))
+  io.write("%i %g %g %g\n", ps, pt, ptot)
 
   plp = ploop(U)
   printf("ploop: %s\n", tostring(plp))

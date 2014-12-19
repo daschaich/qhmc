@@ -129,8 +129,7 @@ end
 
 function measure(G)
   local t0 = clock()
-  local ps,pt = G:plaq()
-  printf("plaq ss: %-8g  st: %-8g  tot: %g\n", ps, pt, 0.5*(ps+pt))
+  printf("plaq ss: %-8g  st: %-8g  tot: %g\n", G:plaq())
 
   local nd = #G.a.latsize
   for i=1,nd do

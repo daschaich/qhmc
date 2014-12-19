@@ -61,8 +61,7 @@ end
 local function measure(a, r)
   local t0 = clock()
 
-  local ps,pt = a.fields.G:plaq()
-  printf("MEASplaq ss: %-8g  st: %-8g  tot: %-8g\n", ps, pt, 0.5*(ps+pt))
+  printf("MEASplaq ss: %-8g  st: %-8g  tot: %-8g\n", a.fields.G:plaq())
 
   local pl = a.fields.G:ploop()
   local pls = 0

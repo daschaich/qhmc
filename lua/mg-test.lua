@@ -21,12 +21,6 @@ qopqdp.lattice(latsize)
 qopqdp.profile(profile or 0)
 qopqdp.verbosity(0)
 
-
-function getplaq(g)
-  local ps,pt = g:plaq()
-  printf("plaq ss: %-8g  st: %-8g  tot: %-8g\n", ps, pt, 0.5*(ps+pt))
-end
-
 g = qopqdp.gauge()
 if inlat then g:load(inlat)
 else
