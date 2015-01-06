@@ -1,0 +1,20 @@
+#loading: /home/schaich/current/lqcd/install/qhmc-git/lua/Init.lua
+#loading: /home/schaich/current/lqcd/install/qhmc-git/lua/pl/class.lua
+#runtest: using temp file kronecker.tmp
+##loading: /home/schaich/current/lqcd/install/qhmc-git/lua/Init.lua
+##loading: /home/schaich/current/lqcd/install/qhmc-git/lua/pl/class.lua
+##runtest: using temp file kronecker.tmp
+##loading: /home/schaich/current/lqcd/install/qhmc-git/lua/gaugeObservables.lua
+##loading: /home/schaich/current/lqcd/install/qhmc-git/lua/smear.lua
+#ndim = 4
+#numsites = 256
+#len = 4 4 4 4
+#nsquares = 1 1 1 1
+Gauge field A:
+orig unitarity deviation avg: 2.021e-08  max: 4.514e-08
+new  unitarity deviation avg: 1.172e-16  max: 2.776e-16
+fund plaq  ss: 0.80394238  st: 0.80265654  tot: 0.80329946
+Gauge field B:
+orig unitarity deviation avg: 1.983e-08  max: 4.144e-08
+new  unitarity deviation avg: 1.197e-16  max: 2.677e-16
+fund plaq  ss: 0.80564142  st: 0.79774327  tot: 0.80169235
